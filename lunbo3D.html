@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>3D轮播图</title>
+    <style>
+        @font-face {
+            font-family: 'iconfont';
+            /* Project id 4306990 */
+            src: url('//at.alicdn.com/t/c/font_4306990_c0ggcvjkafq.woff2?t=1698630152113') format('woff2'),
+                 url('//at.alicdn.com/t/c/font_4306990_c0ggcvjkafq.woff?t=1698630152113') format('woff'),
+                 url('//at.alicdn.com/t/c/font_4306990_c0ggcvjkafq.ttf?t=1698630152113') format('truetype');
+        }
+        .iconfont {
+            font-family: "iconfont" !important;
+            font-size: 20px;
+            font-style: normal;
+            -webkit-font-smoothing: antialiased;
+            -webkit-text-stroke-width: 0.2px;
+            -moz-osx-font-smoothing: grayscale;
+            /* background-color: #fff; */
+        }
+
+        * {
+            padding: 0;
+            margin: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        html,
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vw;
+            background-size: cover;
+        }
+
+        .shell {
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+            height: 100%;
+            box-sizing: border-box;
+            background: rgba(99, 99, 99, 0.8);
+        }
+
+        .button {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 350px;
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            bottom: 150px;
+            box-sizing: border-box;
+            background: rgba(99, 99, 99, 0.8);
+        }
+        .prev,.next
+        {
+            transition: transform 0.25s ease;
+            z-index: 99999;
+            bottom:5px;
+        }
+        .prev i,.next i{
+            font-size: 60px;
+            color: #fff;
+            cursor: pointer;
+            text-shadow: 0 0 10px #fff;
+        }
+        .shell_body{
+            width: 100%;
+            padding: 20px 0 150px 0;
+        }
+        .shell_slider
+        {
+            position: relative;
+            transition: transform 1s ease-in-out;
+            background: transparent;
+        }
+        .item
+        {
+            position: relative;
+            float: left;
+            margin: 0 20px;
+        }
+        .frame{
+            position: relative;
+            width: 100%;
+            height: 100%;
+            transition: transform 1s  ease-in-out;
+            transform-style: preserve-3d;
+        }
+        .frame:after{
+            content: "";
+            position: absolute;
+            bottom: -16%;
+            width: 100%;
+            height: 60px;
+            background: #ffffff1c;
+            box-shadow: 0px 0xp 15px 5px #ffffff1c;
+            transform: rotateX(90deg) translate3d(0px,-20px,0px);
+        }
+        .box
+        {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+            height: 100%;
+            border: 4px solid #fff;
+            perspective: 1000px;
+            transform-style: preserve-3d;
+        }
+        .box h1,.box span
+        {
+            color:#fff;
+            transform: translateZ(20px);
+        }
+        .box h1
+        {
+            text-shadow: 0 0 30px #1f05b4;
+        }
+        .box span{
+            position: absolute;
+            bottom: 20px;
+            padding: 0 25px;
+            text-shadow: 0 0 10px #1f05b4;
+        }
+        .front,.left,.right
+        {
+            box-shadow: 0 0 50px #ffffff;
+            background-size: cover;
+        }
+        .right,.left
+        {
+            top: 0;
+            width: 60px;
+            backface-visibility: hidden;
+        }
+        .left{
+            left: 0;
+            border-left-width: 5px;
+            transform: translate3d(1px,0,-60px) rotateY(-90deg);
+            transform-origin: 0%;
+        }
+        .right
+        {
+            right: 0px;
+            border-right-width: 5px;
+            transform: translate3d(1px,0,-60px) rotateY(90deg);
+            transform-origin: 100%;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="shell">
+        <div class="shell_body">
+            <div class="button">
+                <div class="pre"><i class="iconfont">&#xe6f8;</i></div>
+                <div class="pre"><i class="iconfont">&#xe6f9;</i></div>
+            </div>
+        </div>
+        <div class="shell_slider">
+            <div class="item">
+                <div class="frame">
+                    <div class="box front">
+                        <h1>2014</h1>
+                        <span>-2014 发生了什么呢？-</span>
+                    </div>
+                    <div class="box left"></div>
+                    <div class="box left"></div>
+                </div>
+            </div>
+            <div class="item">
+                <div class="frame">
+                    <div class="box front">
+                        <h1>2014</h1>
+                        <span>-2014 发生了什么呢？-</span>
+                    </div>
+                    <div class="box left"></div>
+                    <div class="box left"></div>
+                </div>
+            </div>
+            <div class="item">
+                <div class="frame">
+                    <div class="box front">
+                        <h1>2014</h1>
+                        <span>-2014 发生了什么呢？-</span>
+                    </div>
+                    <div class="box left"></div>
+                    <div class="box left"></div>
+                </div>
+            </div>
+            <div class="item">
+                <div class="frame">
+                    <div class="box front">
+                        <h1>2014</h1>
+                        <span>-2014 发生了什么呢？-</span>
+                    </div>
+                    <div class="box left"></div>
+                    <div class="box left"></div>
+                </div>
+            </div>
+            <div class="item">
+                <div class="frame">
+                    <div class="box front">
+                        <h1>2014</h1>
+                        <span>-2014 发生了什么呢？-</span>
+                    </div>
+                    <div class="box left"></div>
+                    <div class="box left"></div>
+                </div>
+            </div>
+            <div class="item">
+                <div class="frame">
+                    <div class="box front">
+                        <h1>2014</h1>
+                        <span>-2014 发生了什么呢？-</span>
+                    </div>
+                    <div class="box left"></div>
+                    <div class="box left"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
